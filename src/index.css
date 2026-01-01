@@ -3,17 +3,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-body {
-  overflow: hidden;
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  position: relative;
-  background-color: black;
-  color: white;
-}
-
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -53,6 +42,10 @@ body {
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  /* ADDED THESE 3 LINES ONLY */
+  --color-purple-200: #E9D5FF;
+  --color-purple-600: #9333EA;
+  --color-purple-900: #581C87;
 }
 
 :root {
@@ -132,3 +125,119 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  position: relative;
+  background-color: black;
+  color: white;
+}
+
+/* Section styling */
+section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.panel {
+  width: 100%;
+  height: 100vh;
+}
+
+.pin-spacer {
+  height: 200vh;
+}
+
+/* Responsive text sizing */
+@media (max-width: 640px) {
+  h1 {
+    font-size: 2.5rem !important;
+  }
+
+  h2 {
+    font-size: 2rem !important;
+  }
+
+  p {
+    font-size: 1rem !important;
+  }
+
+  .panel-title {
+    font-size: 2rem !important;
+  }
+
+  .panel-desc {
+    font-size: 1rem !important;
+  }
+}
+
+/* Projects Section Compact Styles */
+.line-clamp-1 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+/* Smooth hover transitions */
+.group {
+  transition: all 0.3s ease;
+}
+
+/* Card hover effect */
+.group:hover {
+  box-shadow: 0 10px 30px rgba(147, 51, 234, 0.1);
+}
+
+/* Image zoom on hover */
+.group img {
+  transition: transform 0.5s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .lg\:grid-cols-5 {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .lg\:grid-cols-5 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .lg\:grid-cols-5 {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Ensure sections don't overlap */
+section + section {
+  position: relative;
+  z-index: 1;
+}
+
+/* Fix any z-index issues with About section */
+section.bg-gradient-to-b.from-violet-950 {
+  z-index: 2;
+}
+

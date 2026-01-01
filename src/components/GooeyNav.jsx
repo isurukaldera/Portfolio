@@ -151,7 +151,7 @@ const GooeyNav = ({
             transition: color 0.3s ease;
           }
           .effect.text.active {
-            color: black;
+            color: purple;
           }
           .effect.filter {
             filter: blur(7px) contrast(100) blur(0);
