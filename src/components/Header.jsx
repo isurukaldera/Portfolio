@@ -111,7 +111,7 @@ const Header = () => {
         >
           <div className="h-10 w-10 ml-0 rounded-xl overflow-hidden flex items-center justify-center mr-3 md:h-16 md:w-16">
             <img 
-              src="/public/Logo/isuru.png"
+              src="/Logo/isuru.png"
               alt="Your Name" 
               className="h-full w-full object-cover"
             />
