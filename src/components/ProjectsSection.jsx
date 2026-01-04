@@ -59,7 +59,7 @@ const projectImages = [
     title: "FOOD DELIVERY APP",
     description: "Android-based food delivery application developed using Java and Firebase",
     imageSrc: "/logo/project-6.png",
-    tags: ["Android Studio", "Java"],
+    tags: ["Android Studio", "Java", "Firebase",],
     github: "https://github.com/isurukaldera/Android-Application-Food-Deilivry-App-?tab=readme-ov-file",
     live: "#",
     color: "from-indigo-600 to-cyan-400"
