@@ -84,6 +84,13 @@ const GooeyNav = ({
     textRef.current.innerText = element.innerText;
   };
   const handleClick = (e, index) => {
+    e.preventDefault(); // ADD THIS LINE AT THE BEGINNING
+
+    // Call onClick handler if it exists
+    if (items[index] && items[index].onClick) {
+      items[index].onClick();
+    }
+
     const liEl = e.currentTarget;
     if (activeIndex === index) return;
     setActiveIndex(index);
@@ -104,6 +111,12 @@ const GooeyNav = ({
   const handleKeyDown = (e, index) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
+
+      // Call onClick handler if it exists
+      if (items[index] && items[index].onClick) {
+        items[index].onClick();
+      }
+
       const liEl = e.currentTarget.parentElement;
       if (liEl) {
         handleClick({ currentTarget: liEl }, index);
@@ -284,9 +297,8 @@ const GooeyNav = ({
             {items.map((item, index) => (
               <li
                 key={index}
-                className={`rounded-full relative cursor-pointer transition-[background-color_color_box-shadow] duration-300 ease shadow-[0_0_0.5px_1.5px_transparent] text-white ${
-                  activeIndex === index ? 'active' : ''
-                }`}
+                className={`rounded-full relative cursor-pointer transition-[background-color_color_box-shadow] duration-300 ease shadow-[0_0_0.5px_1.5px_transparent] text-white ${activeIndex === index ? 'active' : ''
+                  }`}
               >
                 <a
                   onClick={e => handleClick(e, index)}

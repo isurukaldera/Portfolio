@@ -51,7 +51,7 @@ const AboutSection = () => {
     }, [])
 
     return (
-        <section
+        <section id="about"
             ref={sectionRef}
             className="min-h-screen relative overflow-hidden bg-gradient-to-b from-violet-950 via-violet-900 to-black"
         >
@@ -69,7 +69,7 @@ const AboutSection = () => {
 
                 {/* Content Section - Wider container */}
                 <div className="w-full max-w-7xl px-4 md:px-6">
-                    <div 
+                    <div
                         ref={introRef}
                         className="bg-gradient-to-br from-violet-900/30 to-black/40 backdrop-blur-sm border border-violet-700/30 rounded-2xl p-6 md:p-8 lg:p-10 shadow-2xl opacity-0 w-full"
                     >
@@ -82,21 +82,21 @@ const AboutSection = () => {
                                     Software Engineer & Digital Solutions Developer
                                 </h3>
                                 <p className="text-purple-300 text-sm">
-                                    LUT University • Finland
+                                   • Finland
                                 </p>
                             </div>
                         </div>
 
                         <div className="space-y-4">
                             <p className="text-sm md:text-base text-gray-200 leading-relaxed">
-                                I am a Software Engineering postgraduate specializing in 
+                                As a Software Engineering postgraduate specializing in
                                 <span className="font-semibold text-cyan-300"> Digital Systems and Service Development </span>
-                                at LUT University, currently based in Finland.
+                                at LUT University (Finland), I combine academic rigor with practical expertise.
                             </p>
 
                             <p className="text-sm md:text-base text-gray-200 leading-relaxed">
-                                With hands-on experience in 
-                                <span className="font-semibold text-purple-300"> full-stack development, software architecture, and digital twin solutions</span>, 
+                                My experience spans
+                                <span className="font-semibold text-purple-300"> full-stack development, software architecture, and digital twin solutions</span>,
                                 I focus on creating intuitive, user-centered applications across web, mobile, and interactive systems.
                             </p>
                         </div>
@@ -104,8 +104,8 @@ const AboutSection = () => {
                         <div className="mt-6 pt-6 border-t border-violet-800/50">
                             <h4 className="text-base md:text-lg font-bold text-white mb-3">Technical Expertise</h4>
                             <div className="flex flex-wrap gap-2">
-                                {['React', 'Node.js', 'Docker', 'MongoDB', 'C#', 'Python', 'Unity', 'AWS', 'TypeScript', 'GraphQL', 'Figma', 'Blender', 'API', 'Git', 'Tailwind CSS', 'CSS', 'HTML', 'JavaScript', 'AI', 'CNN', 'Resnet', 'SMTP', 'WMA','SMA','SME', 'RFID'].map((tech, index) => (
-                                    <span 
+                                {['React', 'Node.js', 'Docker', 'MongoDB', 'C#', 'Python', 'Unity', 'AWS', 'TypeScript', 'GraphQL', 'Figma', 'Blender', 'API', 'Git', 'Tailwind CSS', 'CSS', 'HTML', 'JavaScript', 'AI', 'CNN', 'Resnet', 'SMTP', 'WMA', 'SMA', 'SME', 'RFID'].map((tech, index) => (
+                                    <span
                                         key={index}
                                         className="px-3 py-1.5 bg-violet-900/50 text-cyan-200 rounded-full text-xs md:text-sm font-medium border border-violet-700/50 hover:bg-violet-800/70 transition-colors duration-300"
                                     >
@@ -117,8 +117,7 @@ const AboutSection = () => {
 
                         <div className="mt-6 pt-6 border-t border-violet-800/50">
                             <p className="text-sm md:text-base text-gray-200 leading-relaxed">
-                                With industry experience in both development and quality assurance, 
-                                I bring a detail-oriented approach to delivering{' '}
+                                Leveraging experience in both development and quality assurance, I take a detail-oriented approach to delivering{' '}
                                 <span className="font-semibold text-purple-300">scalable, reliable, and engaging digital solutions</span>{' '}
                                 from system design through to deployment.
                             </p>

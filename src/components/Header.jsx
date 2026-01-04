@@ -6,6 +6,13 @@ import { useState } from "react";
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [contactFormOpen, setContactFormOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState('');
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -13,18 +20,77 @@ const Header = () => {
 
   const openContactForm = () => {
     setContactFormOpen(true);
+    setSubmitStatus('');
   }
 
   const closeContactForm = () => {
     setContactFormOpen(false);
+    setFormData({ name: '', email: '', message: '' });
+    setSubmitStatus('');
   }
 
+  const handleInputChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('');
+    
+    try {
+      // Send to Netlify Forms
+      const formPayload = new URLSearchParams();
+      formPayload.append('form-name', 'contact');
+      formPayload.append('name', formData.name);
+      formPayload.append('email', formData.email);
+      formPayload.append('message', formData.message);
+      
+      await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: formPayload.toString()
+      });
+      
+      // Success
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', message: '' });
+      
+      // Auto close form after 2 seconds
+      setTimeout(() => {
+        closeContactForm();
+      }, 2000);
+      
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const headerOffset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+  };
+
   const items = [
-    { label: "Home", href: "#" },
-    { label: "About", href: "#" },
-    { label: "Experience", href: "#" },
-    { label: "Project", href: "#" },
-    { label: "Contact", href: "#" },
+    { label: "Home", href: "#", onClick: () => scrollToSection("home") },
+    { label: "About", href: "#", onClick: () => scrollToSection("about") },
+    { label: "Project", href: "#", onClick: () => scrollToSection("projects") },
+    { label: "Contact", href: "#", onClick: () => scrollToSection("contact") },
   ];
 
   return (
@@ -86,7 +152,7 @@ const Header = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{delay: 1.3, duration: 0.8}}
             className="text-grey-700 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-600 transition-colors duration-300"   
-            href="#"
+            href="https://github.com/isurukaldera?tab=repositories"
           >
             <FiGithub className="w-5 h-5"/>
           </motion.a>
@@ -96,7 +162,7 @@ const Header = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{delay: 1.3, duration: 0.8}}
             className="text-grey-700 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-600 transition-colors duration-300"   
-            href="#"
+            href="https://www.linkedin.com/in/isuru-kaldera/"
           >
             <FiLinkedin className="w-5 h-5"/>
           </motion.a>
@@ -136,24 +202,54 @@ const Header = () => {
         className="md:hidden overflow-hidden bg-white dark:bg-gray-900 shadow-lg px-4 space-y-5"
       >
         <nav className="flex flex-col space-y-3 pt-4">
-          {items.map((item) => (
-            <a 
-              onClick={toggleMenu}  
-              className="text-gray-700 dark:text-gray-300 font-medium py-2 hover:text-violet-600 dark:hover:text-violet-600 transition-colors" 
-              key={item.label} 
-              href={item.href}
-            >
-              {item.label}
-            </a>
-          ))}
+          <a 
+            onClick={() => {
+              scrollToSection("home");
+              toggleMenu();
+            }}  
+            className="text-gray-700 dark:text-gray-300 font-medium py-2 hover:text-violet-600 dark:hover:text-violet-600 transition-colors" 
+            href="#"
+          >
+            Home
+          </a>
+          <a 
+            onClick={() => {
+              scrollToSection("about");
+              toggleMenu();
+            }}  
+            className="text-gray-700 dark:text-gray-300 font-medium py-2 hover:text-violet-600 dark:hover:text-violet-600 transition-colors" 
+            href="#"
+          >
+            About
+          </a>
+          <a 
+            onClick={() => {
+              scrollToSection("projects");
+              toggleMenu();
+            }}  
+            className="text-gray-700 dark:text-gray-300 font-medium py-2 hover:text-violet-600 dark:hover:text-violet-600 transition-colors" 
+            href="#"
+          >
+            Project
+          </a>
+          <a 
+            onClick={() => {
+              scrollToSection("contact");
+              toggleMenu();
+            }}  
+            className="text-gray-700 dark:text-gray-300 font-medium py-2 hover:text-violet-600 dark:hover:text-violet-600 transition-colors" 
+            href="#"
+          >
+            Contact
+          </a>
         </nav>
         
         <div className="pt-4 pb-6 border-t border-gray-200 dark:border-gray-700">
           <div className="flex space-x-5">
-            <a href="#" className="text-gray-700 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-600">
+            <a href="https://github.com/isurukaldera?tab=repositories" className="text-gray-700 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-600">
               <FiGithub className="w-5 h-5"/>
             </a>
-            <a href="#" className="text-gray-700 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-600">
+            <a href="https://www.linkedin.com/in/isuru-kaldera/" className="text-gray-700 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-600">
               <FiLinkedin className="w-5 h-5"/>
             </a>
           </div>
@@ -193,20 +289,35 @@ const Header = () => {
                 <button 
                   onClick={closeContactForm}
                   className="p-1 hover:bg-gray-700 rounded-lg transition-colors"
+                  disabled={isSubmitting}
                 >
                   <FiX className="w-6 h-6 text-gray-300 font-bold hover:text-white"/>
                 </button>
               </div>
 
               {/* Contact Form Fields */}
-              <form className="space-y-4">
+              <form 
+                className="space-y-4" 
+                onSubmit={handleSubmit}
+                name="contact"
+                method="POST"
+                data-netlify="true"
+              >
+                {/* Hidden Netlify Field */}
+                <input type="hidden" name="form-name" value="contact" />
+                
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-white mb-2">Name</label>
                   <input
                     type="text"
                     id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
                     placeholder="Your Name"
                     className="w-full px-4 py-3 border border-gray-600 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-violet-500 bg-gray-700 text-white placeholder-gray-400"
+                    required
+                    disabled={isSubmitting}
                   />
                 </div>
                 <div>
@@ -214,8 +325,13 @@ const Header = () => {
                   <input
                     type="email"
                     id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
                     placeholder="your@email.com"
                     className="w-full px-4 py-3 border border-gray-600 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-violet-500 bg-gray-700 text-white placeholder-gray-400"
+                    required
+                    disabled={isSubmitting}
                   />
                 </div>
                 <div>
@@ -223,18 +339,45 @@ const Header = () => {
                   <textarea
                     rows="4"
                     id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
                     placeholder="How can I help you?"
                     className="w-full px-4 py-3 border border-gray-600 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-violet-500 bg-gray-700 text-white placeholder-gray-400 resize-none"
+                    required
+                    disabled={isSubmitting}
                   />
                 </div>
+                
+                {/* Status Messages */}
+                {submitStatus === 'success' && (
+                  <div className="p-3 bg-green-900/30 border border-green-700/50 rounded-lg">
+                    <p className="text-green-400 text-sm">✓ Message sent successfully! I'll get back to you soon.</p>
+                  </div>
+                )}
+                
+                {submitStatus === 'error' && (
+                  <div className="p-3 bg-red-900/30 border border-red-700/50 rounded-lg">
+                    <p className="text-red-400 text-sm">✗ Something went wrong. Please try again.</p>
+                  </div>
+                )}
+                
                 <div className="flex gap-3 pt-2">
                   <motion.button
                     type="submit"
-                    whileHover={{scale: 1.03 }}
-                    whileTap={{scale: 0.97 }}
-                    className="flex-1 px-4 py-3 rounded-lg bg-gradient-to-r from-violet-600 to-violet-400 text-white font-bold hover:from-violet-700 hover:to-purple-700 transition-all duration-300 rounded-lg shadow-md hover:shadow-lg hover:shadow-violet-600/50"
+                    disabled={isSubmitting}
+                    whileHover={!isSubmitting ? {scale: 1.03 } : {}}
+                    whileTap={!isSubmitting ? {scale: 0.97 } : {}}
+                    className="flex-1 px-4 py-3 rounded-lg bg-gradient-to-r from-violet-600 to-violet-400 text-white font-bold hover:from-violet-700 hover:to-purple-700 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
-                    Send Message
+                    {isSubmitting ? (
+                      <>
+                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                        Sending...
+                      </>
+                    ) : (
+                      'Send Message'
+                    )}
                   </motion.button>
                 </div>
               </form>

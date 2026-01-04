@@ -7,51 +7,61 @@ import { MdOutlinePreview } from 'react-icons/md'
 const projectImages = [
   {
     id: 1,
-    title: "Digital Twin Platform",
-    description: "Real-time industrial monitoring system with IoT integration and 3D visualization",
+    title: "FINJOBS",
+    description: "A JOB PORTAL THAT ALLOWS TO VIEW JOB LISTINGS, APPLY FOR JOBS, AND MANAGE APPLICATIONS",
     imageSrc: "/public/logo/project-1.png",
-    tags: ["React", "WebGL", "Node.js", "MongoDB", "IoT"],
-    github: "#",
-    live: "#",
+    tags: ["React", "Node.js", "MongoDB", "Tailwind"],
+    github: "https://github.com/isurukaldera/FinJobs?tab=readme-ov-file",
+    live: "https://finjobs.onrender.com",
     color: "from-purple-600 to-cyan-500"
   },
   {
     id: 2,
-    title: "E-Commerce Analytics",
-    description: "Advanced data visualization dashboard for retail insights and predictive analytics",
+    title: "HAUNTED ESCAPE",
+    description: "A HORROR GAME WITH ONE STAGE FOR UNIVERSIY PROJECT USING UNITY & BLENDER",
     imageSrc: "/public/logo/project-2.png",
-    tags: ["Next.js", "D3.js", "Python", "PostgreSQL", "AWS"],
-    github: "#",
-    live: "#",
+    tags: ["Unity", "C#", "WebGL", "Blender",],
+    github: "https://github.com/isurukaldera/Haunted-Escape",
+    live: "https://hollupathirage.itch.io/haunted-escape",
     color: "from-blue-600 to-emerald-500"
   },
   {
     id: 3,
-    title: "AI Assistant App",
-    description: "Voice-controlled productivity assistant with natural language processing",
+    title: "RETAIL DIGITAL TWIN",
+    description: "A FUNCTIONAL DIGITAL TWIN PROTOTYPE FOR RETAIL INVENTORY MANAGEMENT DEVELOPED AS PART OF MASTER'S THESIS RESEARCH AT LUT UNIVERSITY",
     imageSrc: "/public/logo/project-3.png",
-    tags: ["React Native", "OpenAI", "Firebase", "Node.js"],
-    github: "#",
-    live: "#",
+    tags: ["Unity", "C#", "SQL", "Python", "FastAPI", "Colab", "Ngrok", "SMA", "WMA", "Linear"],
+    github: "https://github.com/isurukaldera/ThesisDTPrototype",
+    live: "https://lutpub.lut.fi/bitstream/handle/10024/170818/Mastersthesis_Hollupathirage_Isuru.pdf?sequence=1&isAllowed=y",
     color: "from-rose-600 to-orange-500"
   },
   {
     id: 4,
-    title: "AR Navigation System",
-    description: "Augmented reality indoor navigation with real-time positioning",
+    title: "POSH E-COMMERCE",
+    description: "RESPONSIVE FRONT-END E-COMMERCE WEBSITE DEVELOPED USING HTML AND CSS, FEATURING A STRUCTURED LAYOUT AND USER-FRIENDLY DESIGN.",
     imageSrc: "/public/logo/project-4.png",
-    tags: ["Unity", "ARKit", "C#", "Blender", "AR"],
-    github: "#",
-    live: "#",
+    tags: ["Html", "Css",],
+    github: "https://github.com/isurukaldera/Fully-Responsive-Posh-Ecommerce-Website",
+    live: "https://poshecommerce.netlify.app/",
     color: "from-violet-600 to-pink-500"
   },
   {
     id: 5,
-    title: "Cloud Architecture",
-    description: "Scalable microservices deployment on AWS with CI/CD pipeline",
+    title: "E-COMMERCE FRONT-END",
+    description: "STATIC FRONT-END E-COMMERCE WEBSITE DEVELOPED USING HTML AND CSS, FOCUSING ON RESPONSIVE DESIGN, ACCESSIBILITY, AND UI PRACTICES",
     imageSrc: "/public/logo/project-5.png",
+    tags: ["Html", "Css",],
+    github: "https://github.com/isurukaldera/Front-End-2024-25",
+    live: "https://fancy-mooncake-103b18.netlify.app/products",
+    color: "from-indigo-600 to-cyan-400"
+  },
+  {
+    id: 6,
+    title: "FOOD DELIVERY APP",
+    description: "Android-based food delivery application developed using Java and Firebase in Android Studio, implementing structured UI components and efficient user interaction flows",
+    imageSrc: "/public/logo/project-6.png",
     tags: ["AWS", "Docker", "Kubernetes", "Terraform", "CI/CD"],
-    github: "#",
+    github: "https://github.com/isurukaldera/Android-Application-Food-Deilivry-App-?tab=readme-ov-file",
     live: "#",
     color: "from-indigo-600 to-cyan-400"
   },
@@ -69,26 +79,11 @@ const ProjectsSection = () => {
   const [startX, setStartX] = useState(0)
   const [scrollLeft, setScrollLeft] = useState(0)
 
-  // Mouse wheel horizontal scrolling
-  useEffect(() => {
-    const handleWheel = (e) => {
-      if (horizontalRef.current && sectionsRef.current) {
-        const rect = sectionsRef.current.getBoundingClientRect()
-        // Only intercept wheel events when mouse is over the projects section
-        if (rect.top <= window.innerHeight && rect.bottom >= 0) {
-          e.preventDefault()
-          horizontalRef.current.scrollLeft += e.deltaY * 1.5
-          
-          // Update current project based on scroll position
-          const scrollPercentage = horizontalRef.current.scrollLeft / 
-            (horizontalRef.current.scrollWidth - horizontalRef.current.clientWidth)
-          const newProject = Math.round(scrollPercentage * (projectImages.length - 1))
-          setCurrentProject(newProject)
-        }
-      }
-    }
+  // REMOVE THIS ENTIRE useEffect FOR WHEEL SCROLLING - JUST DELETE IT
+  // Keep touch and mouse drag events but NOT wheel events
 
-    // Touch events for mobile
+  // Touch events for mobile (keep these)
+  useEffect(() => {
     const handleTouchStart = (e) => {
       setIsDragging(true)
       setStartX(e.touches[0].pageX - horizontalRef.current.offsetLeft)
@@ -107,7 +102,7 @@ const ProjectsSection = () => {
       setIsDragging(false)
     }
 
-    // Mouse drag events for desktop
+    // Mouse drag events for desktop (keep these)
     const handleMouseDown = (e) => {
       setIsDragging(true)
       setStartX(e.pageX - horizontalRef.current.offsetLeft)
@@ -128,22 +123,24 @@ const ProjectsSection = () => {
 
     const container = horizontalRef.current
     if (container) {
-      // Add wheel event listener
-      container.addEventListener('wheel', handleWheel, { passive: false })
+      // REMOVE THIS LINE - NO WHEEL EVENT
+      // container.addEventListener('wheel', handleWheel, { passive: false })
       
-      // Touch events for mobile
+      // Keep touch events
       container.addEventListener('touchstart', handleTouchStart, { passive: true })
       container.addEventListener('touchmove', handleTouchMove, { passive: false })
       container.addEventListener('touchend', handleTouchEnd)
       
-      // Mouse drag events for desktop
+      // Keep mouse drag events
       container.addEventListener('mousedown', handleMouseDown)
       container.addEventListener('mousemove', handleMouseMove)
       container.addEventListener('mouseup', handleMouseUp)
       container.addEventListener('mouseleave', handleMouseUp)
 
       return () => {
-        container.removeEventListener('wheel', handleWheel)
+        // REMOVE THIS LINE
+        // container.removeEventListener('wheel', handleWheel)
+        
         container.removeEventListener('touchstart', handleTouchStart)
         container.removeEventListener('touchmove', handleTouchMove)
         container.removeEventListener('touchend', handleTouchEnd)
@@ -155,7 +152,7 @@ const ProjectsSection = () => {
     }
   }, [isDragging, startX, scrollLeft])
 
-  // GSAP animations
+  // GSAP animations (keep all of this)
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
 
@@ -386,7 +383,7 @@ const ProjectsSection = () => {
                     <div className="space-y-6">
                       <div className="flex items-center gap-3 mb-2">
                         <span className="text-sm font-semibold text-cyan-400 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20">
-                          Project #{project.id}
+                          University Project #{project.id}
                         </span>
                         <div className="w-16 h-px bg-gradient-to-r from-purple-500/50 to-transparent"></div>
                       </div>
@@ -425,10 +422,6 @@ const ProjectsSection = () => {
                           <FiExternalLink className="w-5 h-5" />
                           <span className="font-medium">Live Demo</span>
                         </a>
-                        <button className="flex items-center gap-2 px-5 py-3 rounded-lg bg-white/5 text-gray-300 hover:text-white border border-white/10 hover:border-cyan-500/50 transition-all duration-300 group">
-                          <MdOutlinePreview className="w-5 h-5 group-hover:text-cyan-400 transition-colors" />
-                          <span className="font-medium">Preview</span>
-                        </button>
                       </div>
                     </div>
                   </div>

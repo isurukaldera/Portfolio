@@ -50,8 +50,7 @@ const HeroSection = () => {
           transition={{ duration: 1.5, type: "spring", stiffness: 40, delay: 1.8, damping: 25 }}
           className="text-xl md:text-0.5xl lg:text-0.5xl max-w-2xl text-purple-200"
         >
-          Hello im Isuru Kaldera, a passionate web developer with expertise in creating dynamic and responsive web applications.
-          With a strong foundation in both front-end and back-end technologies, I strive to build seamless user experiences and efficient solutions. Let's collaborate to bring your ideas to life!
+          A passionate developer with experience across front end and back end technologies. I am seeking internship or junior level opportunities to grow in web development, mobile applications, game development, digital twin solutions, and user experience, while contributing to innovative, scalable, and user focused digital products.
         </motion.p>
       </div>
       {/* Spine 3D */}
