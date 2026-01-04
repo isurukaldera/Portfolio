@@ -2,13 +2,12 @@ import { useRef, useEffect, useState } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { FiExternalLink, FiGithub } from 'react-icons/fi'
-import { MdOutlinePreview } from 'react-icons/md'
 
 const projectImages = [
   {
     id: 1,
     title: "FINJOBS",
-    description: "A JOB PORTAL THAT ALLOWS TO VIEW JOB LISTINGS, APPLY FOR JOBS, AND MANAGE APPLICATIONS",
+    description: "A job portal that allows users to view job listings, apply for jobs, and manage applications",
     imageSrc: "/logo/project-1.png",
     tags: ["React", "Node.js", "MongoDB", "Tailwind"],
     github: "https://github.com/isurukaldera/FinJobs?tab=readme-ov-file",
@@ -18,9 +17,9 @@ const projectImages = [
   {
     id: 2,
     title: "HAUNTED ESCAPE",
-    description: "A HORROR GAME WITH ONE STAGE FOR UNIVERSIY PROJECT USING UNITY & BLENDER",
+    description: "A horror game with one stage for university project using Unity & Blender",
     imageSrc: "/logo/project-2.png",
-    tags: ["Unity", "C#", "WebGL", "Blender",],
+    tags: ["Unity", "C#", "WebGL", "Blender"],
     github: "https://github.com/isurukaldera/Haunted-Escape",
     live: "https://hollupathirage.itch.io/haunted-escape",
     color: "from-blue-600 to-emerald-500"
@@ -28,9 +27,9 @@ const projectImages = [
   {
     id: 3,
     title: "RETAIL DIGITAL TWIN",
-    description: "A FUNCTIONAL DIGITAL TWIN PROTOTYPE FOR RETAIL INVENTORY MANAGEMENT DEVELOPED AS PART OF MASTER'S THESIS RESEARCH AT LUT UNIVERSITY",
+    description: "A functional digital twin prototype for retail inventory management developed as part of Master's thesis research",
     imageSrc: "/logo/project-3.png",
-    tags: ["Unity", "C#", "SQL", "Python", "FastAPI", "Colab", "Ngrok", "SMA", "WMA", "Linear"],
+    tags: ["Unity", "C#", "SQL", "Python", "FastAPI"],
     github: "https://github.com/isurukaldera/ThesisDTPrototype",
     live: "https://lutpub.lut.fi/bitstream/handle/10024/170818/Mastersthesis_Hollupathirage_Isuru.pdf?sequence=1&isAllowed=y",
     color: "from-rose-600 to-orange-500"
@@ -38,9 +37,9 @@ const projectImages = [
   {
     id: 4,
     title: "POSH E-COMMERCE",
-    description: "RESPONSIVE FRONT-END E-COMMERCE WEBSITE DEVELOPED USING HTML AND CSS, FEATURING A STRUCTURED LAYOUT AND USER-FRIENDLY DESIGN.",
+    description: "Responsive front-end e-commerce website developed using HTML and CSS",
     imageSrc: "/logo/project-4.png",
-    tags: ["Html", "Css",],
+    tags: ["HTML", "CSS"],
     github: "https://github.com/isurukaldera/Fully-Responsive-Posh-Ecommerce-Website",
     live: "https://poshecommerce.netlify.app/",
     color: "from-violet-600 to-pink-500"
@@ -48,9 +47,9 @@ const projectImages = [
   {
     id: 5,
     title: "E-COMMERCE FRONT-END",
-    description: "STATIC FRONT-END E-COMMERCE WEBSITE DEVELOPED USING HTML AND CSS, FOCUSING ON RESPONSIVE DESIGN, ACCESSIBILITY, AND UI PRACTICES",
+    description: "Static front-end e-commerce website focusing on responsive design and accessibility",
     imageSrc: "/logo/project-5.png",
-    tags: ["Html", "Css",],
+    tags: ["HTML", "CSS"],
     github: "https://github.com/isurukaldera/Front-End-2024-25",
     live: "https://fancy-mooncake-103b18.netlify.app/products",
     color: "from-indigo-600 to-cyan-400"
@@ -58,7 +57,7 @@ const projectImages = [
   {
     id: 6,
     title: "FOOD DELIVERY APP",
-    description: "Android-based food delivery application developed using Java and Firebase in Android Studio, implementing structured UI components and efficient user interaction flows",
+    description: "Android-based food delivery application developed using Java and Firebase",
     imageSrc: "/logo/project-6.png",
     tags: ["AWS", "Docker", "Kubernetes", "Terraform", "CI/CD"],
     github: "https://github.com/isurukaldera/Android-Application-Food-Deilivry-App-?tab=readme-ov-file",
@@ -79,10 +78,7 @@ const ProjectsSection = () => {
   const [startX, setStartX] = useState(0)
   const [scrollLeft, setScrollLeft] = useState(0)
 
-  // REMOVE THIS ENTIRE useEffect FOR WHEEL SCROLLING - JUST DELETE IT
-  // Keep touch and mouse drag events but NOT wheel events
-
-  // Touch events for mobile (keep these)
+  // Touch events for mobile
   useEffect(() => {
     const handleTouchStart = (e) => {
       setIsDragging(true)
@@ -102,7 +98,7 @@ const ProjectsSection = () => {
       setIsDragging(false)
     }
 
-    // Mouse drag events for desktop (keep these)
+    // Mouse drag events for desktop
     const handleMouseDown = (e) => {
       setIsDragging(true)
       setStartX(e.pageX - horizontalRef.current.offsetLeft)
@@ -123,9 +119,6 @@ const ProjectsSection = () => {
 
     const container = horizontalRef.current
     if (container) {
-      // REMOVE THIS LINE - NO WHEEL EVENT
-      // container.addEventListener('wheel', handleWheel, { passive: false })
-      
       // Keep touch events
       container.addEventListener('touchstart', handleTouchStart, { passive: true })
       container.addEventListener('touchmove', handleTouchMove, { passive: false })
@@ -138,9 +131,6 @@ const ProjectsSection = () => {
       container.addEventListener('mouseleave', handleMouseUp)
 
       return () => {
-        // REMOVE THIS LINE
-        // container.removeEventListener('wheel', handleWheel)
-        
         container.removeEventListener('touchstart', handleTouchStart)
         container.removeEventListener('touchmove', handleTouchMove)
         container.removeEventListener('touchend', handleTouchEnd)
@@ -152,18 +142,18 @@ const ProjectsSection = () => {
     }
   }, [isDragging, startX, scrollLeft])
 
-  // GSAP animations (keep all of this)
+  // GSAP animations
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
 
     // Title animation
     gsap.fromTo(
       titleRef.current,
-      { y: 100, opacity: 0 },
+      { y: 50, opacity: 0 },
       {
         y: 0,
         opacity: 1,
-        duration: 1.2,
+        duration: 1,
         ease: "power3.out",
         scrollTrigger: {
           trigger: sectionsRef.current,
@@ -180,9 +170,9 @@ const ProjectsSection = () => {
       {
         width: "100%",
         opacity: 1,
-        duration: 1.5,
+        duration: 1.2,
         ease: "power3.inOut",
-        delay: 0.3,
+        delay: 0.2,
         scrollTrigger: {
           trigger: sectionsRef.current,
           start: "top 80%",
@@ -195,15 +185,15 @@ const ProjectsSection = () => {
     gsap.fromTo(
       contentRef.current,
       { 
-        y: 50,
+        y: 30,
         opacity: 0 
       },
       {
         y: 0,
         opacity: 1,
-        duration: 1,
+        duration: 0.8,
         ease: "power3.out",
-        delay: 0.4,
+        delay: 0.3,
         scrollTrigger: {
           trigger: sectionsRef.current,
           start: "top 70%",
@@ -235,43 +225,43 @@ const ProjectsSection = () => {
     panels.forEach((panel, i) => {
       gsap.fromTo(panel,
         { 
-          scale: 0.9,
-          y: 100,
+          scale: 0.95,
+          y: 50,
           opacity: 0,
-          rotationY: 15
         },
         {
           scale: 1,
           y: 0,
           opacity: 1,
-          rotationY: 0,
-          duration: 0.8,
+          duration: 0.6,
           delay: i * 0.1,
           ease: "power3.out",
           scrollTrigger: {
             trigger: panel,
-            start: "top 90%",
+            start: "top 85%",
             toggleActions: "play none none reverse",
           }
         }
       )
 
-      // Hover animation
-      panel.addEventListener('mouseenter', () => {
-        gsap.to(panel, {
-          scale: 1.02,
-          duration: 0.3,
-          ease: "power2.out"
+      // Hover animation only on desktop
+      if (window.innerWidth > 768) {
+        panel.addEventListener('mouseenter', () => {
+          gsap.to(panel, {
+            scale: 1.02,
+            duration: 0.3,
+            ease: "power2.out"
+          })
         })
-      })
 
-      panel.addEventListener('mouseleave', () => {
-        gsap.to(panel, {
-          scale: 1,
-          duration: 0.3,
-          ease: "power2.out"
+        panel.addEventListener('mouseleave', () => {
+          gsap.to(panel, {
+            scale: 1,
+            duration: 0.3,
+            ease: "power2.out"
+          })
         })
-      })
+      }
     })
 
     return () => {
@@ -313,31 +303,31 @@ const ProjectsSection = () => {
     <section
       ref={sectionsRef}
       id="projects"
-      className="relative py-20 min-h-screen bg-gradient-to-b from-black via-violet-950/10 to-black overflow-hidden"
+      className="relative py-12 md:py-20 min-h-screen bg-gradient-to-b from-black via-violet-950/10 to-black overflow-hidden"
     >
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-10 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-cyan-600/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 left-10 w-64 h-64 md:w-96 md:h-96 bg-purple-600/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 right-10 w-64 h-64 md:w-96 md:h-96 bg-cyan-600/5 rounded-full blur-3xl" />
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-purple-500/10 to-transparent" />
       </div>
 
-      <div className="container mx-auto px-4 mb-12 relative z-10">
+      <div className="container mx-auto px-4 mb-8 md:mb-12 relative z-10">
         <div className="text-center mb-8">
           <h2
             ref={titleRef}
-            className="text-4xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-purple-400 via-cyan-400 to-purple-400 bg-clip-text text-transparent mb-6 opacity-0 tracking-tight"
+            className="text-3xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-purple-400 via-cyan-400 to-purple-400 bg-clip-text text-transparent mb-4 md:mb-6 opacity-0"
           >
             Featured Projects
           </h2>
           
-          <div className="flex justify-center items-center gap-4 mb-6">
-            <div className="w-12 h-1 bg-gradient-to-r from-transparent to-purple-500"></div>
+          <div className="flex justify-center items-center gap-3 md:gap-4 mb-6">
+            <div className="w-8 md:w-12 h-1 bg-gradient-to-r from-transparent to-purple-500"></div>
             <div
               ref={titleLineRef}
-              className="w-32 h-1 bg-gradient-to-r from-purple-500 to-cyan-400 opacity-0 rounded-full"
+              className="w-24 md:w-32 h-1 bg-gradient-to-r from-purple-500 to-cyan-400 opacity-0 rounded-full"
             ></div>
-            <div className="w-12 h-1 bg-gradient-to-r from-cyan-500 to-transparent"></div>
+            <div className="w-8 md:w-12 h-1 bg-gradient-to-r from-cyan-500 to-transparent"></div>
           </div>
         </div>
       </div>
@@ -345,28 +335,101 @@ const ProjectsSection = () => {
       {/* Main horizontal scrolling container */}
       <div 
         ref={horizontalRef}
-        className="relative overflow-x-auto overflow-y-hidden h-[70vh] lg:h-[80vh] snap-x snap-mandatory scrollbar-hide cursor-grab active:cursor-grabbing"
+        className="relative overflow-x-auto overflow-y-hidden h-[500px] md:h-[70vh] lg:h-[80vh] snap-x snap-mandatory scrollbar-hide cursor-grab active:cursor-grabbing"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
         <div 
           ref={contentRef}
-          className="flex h-full min-w-max px-4 lg:px-8"
+          className="flex h-full min-w-max px-4 md:px-8"
         >
           {projectImages.map((project) => (
             <div
               key={project.id}
-              className="project-card flex-shrink-0 w-screen lg:w-[90vw] h-full px-4 snap-center"
+              className="project-card flex-shrink-0 w-[85vw] md:w-[90vw] h-full px-2 md:px-4 snap-center"
             >
               <div className="relative h-full flex items-center">
                 <div className="relative w-full max-w-6xl mx-auto">
-                  <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                  {/* Mobile Layout (Stacked) */}
+                  <div className="md:hidden space-y-4">
                     {/* Image Container */}
                     <div className="relative group">
-                      <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-violet-900/20 to-black/40 backdrop-blur-sm shadow-2xl">
+                      <div className="relative overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-violet-900/20 to-black/40 backdrop-blur-sm">
                         <img
-                          className="w-full h-64 md:h-80 lg:h-96 object-cover transition-transform duration-700 group-hover:scale-105"
+                          className="w-full h-40 object-cover transition-transform duration-500"
                           src={project.imageSrc}
                           alt={project.title}
+                          loading="lazy"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                      </div>
+                      
+                      {/* Badge */}
+                      <div className="absolute top-3 left-3">
+                        <span className="text-xs font-semibold text-cyan-400 px-2 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20">
+                          #{project.id}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Content Container */}
+                    <div className="space-y-3 px-1">
+                      <h3 className="text-xl font-bold text-white">
+                        {project.title}
+                      </h3>
+                      
+                      <p className="text-gray-300 text-sm leading-relaxed line-clamp-3">
+                        {project.description}
+                      </p>
+                      
+                      <div className="flex flex-wrap gap-1">
+                        {project.tags.slice(0, 3).map((tag, index) => (
+                          <span
+                            key={index}
+                            className="px-2 py-1 bg-white/5 text-gray-300 rounded-lg text-xs font-medium border border-white/10"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                        {project.tags.length > 3 && (
+                          <span className="px-2 py-1 bg-white/5 text-gray-300 rounded-lg text-xs font-medium border border-white/10">
+                            +{project.tags.length - 3}
+                          </span>
+                        )}
+                      </div>
+                      
+                      <div className="flex gap-2 pt-2">
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center gap-1 flex-1 px-3 py-2 rounded-lg bg-gradient-to-r from-gray-900 to-black text-gray-300 border border-gray-800"
+                        >
+                          <FiGithub className="w-4 h-4" />
+                          <span className="text-xs font-medium">Code</span>
+                        </a>
+                        <a
+                          href={project.live}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center gap-1 flex-1 px-3 py-2 rounded-lg bg-gradient-to-r from-purple-600 to-cyan-600 text-white"
+                        >
+                          <FiExternalLink className="w-4 h-4" />
+                          <span className="text-xs font-medium">Live</span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Desktop Layout (Grid) */}
+                  <div className="hidden md:grid lg:grid-cols-2 gap-6 lg:gap-8 items-center">
+                    {/* Image Container */}
+                    <div className="relative group">
+                      <div className="relative overflow-hidden rounded-2xl lg:rounded-3xl border border-white/10 bg-gradient-to-br from-violet-900/20 to-black/40 backdrop-blur-sm shadow-xl lg:shadow-2xl">
+                        <img
+                          className="w-full h-56 lg:h-64 xl:h-80 object-cover transition-transform duration-700 group-hover:scale-105"
+                          src={project.imageSrc}
+                          alt={project.title}
+                          loading="lazy"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300" />
                         
@@ -375,52 +438,56 @@ const ProjectsSection = () => {
                       </div>
                       
                       {/* Decorative elements */}
-                      <div className="absolute -top-4 -left-4 w-8 h-8 border-t-2 border-l-2 border-purple-500/50 rounded-tl-lg" />
-                      <div className="absolute -bottom-4 -right-4 w-8 h-8 border-b-2 border-r-2 border-cyan-500/50 rounded-br-lg" />
+                      <div className="absolute -top-3 -left-3 w-6 h-6 lg:w-8 lg:h-8 border-t-2 border-l-2 border-purple-500/50 rounded-tl-lg" />
+                      <div className="absolute -bottom-3 -right-3 w-6 h-6 lg:w-8 lg:h-8 border-b-2 border-r-2 border-cyan-500/50 rounded-br-lg" />
                     </div>
 
                     {/* Content Container */}
-                    <div className="space-y-6">
-                      <div className="flex items-center gap-3 mb-2">
-                        <span className="text-sm font-semibold text-cyan-400 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20">
-                          University Project #{project.id}
+                    <div className="space-y-4 lg:space-y-6">
+                      <div className="flex items-center gap-2 lg:gap-3 mb-1 lg:mb-2">
+                        <span className="text-xs lg:text-sm font-semibold text-cyan-400 px-2 lg:px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20">
+                          Project #{project.id}
                         </span>
-                        <div className="w-16 h-px bg-gradient-to-r from-purple-500/50 to-transparent"></div>
+                        <div className="w-12 lg:w-16 h-px bg-gradient-to-r from-purple-500/50 to-transparent"></div>
                       </div>
                       
-                      <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
+                      <h3 className="text-2xl lg:text-3xl xl:text-4xl font-bold text-white">
                         {project.title}
                       </h3>
                       
-                      <p className="text-gray-300 text-lg leading-relaxed">
+                      <p className="text-gray-300 text-sm lg:text-base xl:text-lg leading-relaxed">
                         {project.description}
                       </p>
                       
-                      <div className="flex flex-wrap gap-2">
+                      <div className="flex flex-wrap gap-1 lg:gap-2">
                         {project.tags.map((tag, index) => (
                           <span
                             key={index}
-                            className="px-3 py-1.5 bg-white/5 text-gray-300 rounded-full text-sm font-medium border border-white/10 hover:bg-white/10 hover:text-white hover:border-purple-500/30 transition-all duration-300"
+                            className="px-2 lg:px-3 py-1 lg:py-1.5 bg-white/5 text-gray-300 rounded-full text-xs lg:text-sm font-medium border border-white/10 hover:bg-white/10 hover:text-white hover:border-purple-500/30 transition-all duration-300"
                           >
                             {tag}
                           </span>
                         ))}
                       </div>
                       
-                      <div className="flex gap-4 pt-4">
+                      <div className="flex gap-3 lg:gap-4 pt-3 lg:pt-4">
                         <a
                           href={project.github}
-                          className="flex items-center gap-2 px-5 py-3 rounded-lg bg-gradient-to-r from-gray-900 to-black text-gray-300 hover:text-white border border-gray-800 hover:border-purple-500/50 transition-all duration-300 group"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-1 lg:gap-2 px-3 lg:px-5 py-2 lg:py-3 rounded-lg bg-gradient-to-r from-gray-900 to-black text-gray-300 hover:text-white border border-gray-800 hover:border-purple-500/50 transition-all duration-300 group"
                         >
-                          <FiGithub className="w-5 h-5 group-hover:text-purple-400 transition-colors" />
-                          <span className="font-medium">Code</span>
+                          <FiGithub className="w-4 h-4 lg:w-5 lg:h-5 group-hover:text-purple-400 transition-colors" />
+                          <span className="text-sm lg:text-base font-medium">Code</span>
                         </a>
                         <a
                           href={project.live}
-                          className="flex items-center gap-2 px-5 py-3 rounded-lg bg-gradient-to-r from-purple-600 to-cyan-600 text-white hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 group"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-1 lg:gap-2 px-3 lg:px-5 py-2 lg:py-3 rounded-lg bg-gradient-to-r from-purple-600 to-cyan-600 text-white hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 group"
                         >
-                          <FiExternalLink className="w-5 h-5" />
-                          <span className="font-medium">Live Demo</span>
+                          <FiExternalLink className="w-4 h-4 lg:w-5 lg:h-5" />
+                          <span className="text-sm lg:text-base font-medium">Live Demo</span>
                         </a>
                       </div>
                     </div>
@@ -432,9 +499,31 @@ const ProjectsSection = () => {
         </div>
       </div>
 
-      {/* Minimal navigation indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center z-20">
-        {/* Navigation dots */}
+      {/* Navigation dots for mobile */}
+      <div className="md:hidden absolute bottom-6 left-1/2 transform -translate-x-1/2 text-center z-20">
+        <div className="flex gap-2 mb-2">
+          {projectImages.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => scrollToProject(index)}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                index === currentProject 
+                  ? 'bg-gradient-to-r from-purple-500 to-cyan-500 scale-125' 
+                  : 'bg-gray-700 hover:bg-gray-600'
+              }`}
+              aria-label={`Go to project ${index + 1}`}
+            />
+          ))}
+        </div>
+        <div className="text-xs text-gray-500">
+          <span className="font-medium text-cyan-300">
+            {currentProject + 1} / {projectImages.length}
+          </span>
+        </div>
+      </div>
+
+      {/* Navigation dots for desktop */}
+      <div className="hidden md:block absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center z-20">
         <div className="flex gap-3 mb-3">
           {projectImages.map((_, index) => (
             <button
@@ -448,8 +537,6 @@ const ProjectsSection = () => {
             />
           ))}
         </div>
-
-        {/* Simple counter */}
         <div className="text-xs text-gray-500">
           <span className="font-medium text-cyan-300">
             {currentProject + 1} / {projectImages.length}
@@ -475,6 +562,12 @@ const ProjectsSection = () => {
         }
         .scrollbar-hide::-webkit-scrollbar {
           display: none;
+        }
+        .line-clamp-3 {
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
         }
       `}</style>
     </section>
