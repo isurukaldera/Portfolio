@@ -31,7 +31,7 @@ const projectImages = [
     imageSrc: "/logo/project-3.png",
     tags: ["Unity", "C#", "SQL", "Python", "FastAPI"],
     github: "https://github.com/isurukaldera/ThesisDTPrototype",
-    live: "https://www.linkedin.com/posts/isuru-kaldera_digitaltwin-retail-retailtech-ugcPost-7426637242724610048-SFa3/?utm_source=share&utm_medium=member_desktop&rcm=ACoAADRlzLwB7DT1q2ba1p8RpVwgzOcAISIVy5Q"",
+    live: "https://www.linkedin.com/posts/isuru-kaldera_digitaltwin-retail-retailtech-ugcPost-7426637242724610048-SFa3/?utm_source=share&utm_medium=member_desktop&rcm=ACoAADRlzLwB7DT1q2ba1p8RpVwgzOcAISIVy5Q",
     color: "from-rose-600 to-orange-500"
   },
   {
