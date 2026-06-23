@@ -30,7 +30,7 @@ const projectImages = [
     description: "A functional digital twin prototype for retail inventory management developed as part of Master's thesis research",
     imageSrc: "/logo/project-3.png",
     tags: ["Unity", "C#", "SQL", "Python", "FastAPI"],
-    github: "https://github.com/isurukaldera/ThesisDTPrototype",
+    github: "https://www.linkedin.com/posts/isuru-kaldera_digitaltwin-retail-retailtech-ugcPost-7426637242724610048-SFa3/?utm_source=share&utm_medium=member_desktop&rcm=ACoAADRlzLwB7DT1q2ba1p8RpVwgzOcAISIVy5Q",
     live: "https://lutpub.lut.fi/bitstream/handle/10024/170818/Mastersthesis_Hollupathirage_Isuru.pdf?sequence=1&isAllowed=y",
     color: "from-rose-600 to-orange-500"
   },
